@@ -3,7 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
+
 from django.http import HttpResponseNotFound
+from django.shortcuts import redirect
+from django.conf import settings
 
 from .models import Recipe, User
 from .serializers import RecipieSerializer, UsernameUpdateSerializer
@@ -19,11 +22,10 @@ class RecipeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipieSerializer
 
 
-class VerifyEmailView(APIView):
-    def get(self, request, *args, **kwargs):
-        key = kwargs.get("key")
-        data = {"key": key}
-        return Response(data, status=status.HTTP_200_OK)
+def verify_email_view(request, *args, **kwargs):
+    key = kwargs.get("key", "")
+    return redirect(f"{settings.FRONTEND_DOMAIN}verify-email/{key}/")
+
     
 class PasswordResetView(APIView):
     def get(self, request, *args, **kwargs):

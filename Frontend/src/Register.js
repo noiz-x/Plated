@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     
@@ -10,11 +10,11 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [confpass, setConfPass] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [level, setLevel] = useState(1);
     const [unameError, setUnameError] = useState(null);
-
-    const history = useHistory();
+    const [resendCodeTimer, setResendCodeTimer] = useState(0);
 
     const handleUsernameChange = (e) => {
         let uname = e.target.value;
@@ -42,6 +42,7 @@ const Register = () => {
     };
 
     const handleContinue = (e) => {
+        setIsLoading(true);
         e.preventDefault();
 
         fetch("http://127.0.0.1:8000/api/auth/registration/validate-email/?email="+email)
@@ -50,6 +51,7 @@ const Register = () => {
                 setError(null);
                 if (!unameError){
                     setLevel(2);
+                    setIsLoading(false);
                 }
             }
             else{
@@ -58,13 +60,17 @@ const Register = () => {
         })
         .catch(err => {
             setError(err.message);
+            setIsLoading(false);
         });
     };
 
     const handleSubmit = (e) => {
+        setIsLoading(true);
         e.preventDefault();
+
         if (password !== confpass){
             setError("Passwords do not match");
+            setIsLoading(false);
         }
         else{
             setError(null);
@@ -85,6 +91,7 @@ const Register = () => {
             .then(res => {
                 if (res.ok){
                     setLevel(3);
+                    setIsLoading(false);
                 }
                 return res.json();
             })
@@ -94,10 +101,38 @@ const Register = () => {
             })
             .catch(err => {
                 setError(err.message);
+                setIsLoading(false);
             });
 
         };
     };
+
+    const handleResendMail = () => {
+        setIsLoading(true);
+
+        fetch("http://127.0.0.1:8000/api/auth/registration/resend-email/", {
+            headers: {"Content-Type": "application/json"},
+            method: "POST",
+            body: JSON.stringify({ email }) 
+        })
+        .then((res) => {
+            if (res.ok){
+                let time = 60;
+                setIsLoading(false);
+                setResendCodeTimer(time);
+
+                setInterval(() => {
+                    if (time >= 0){
+                        time--;
+                        setResendCodeTimer(time);
+                    }
+                }, 1000);
+            }
+            else{
+                setIsLoading(false);
+            }
+        })
+    }
 
     return ( 
         <div className="register py-10 sm:px-10 px-3">
@@ -157,7 +192,9 @@ const Register = () => {
                                 />
                             </div>
                             <div className="mt-5">
-                                <button type="submit" className="btn w-full">Continue</button>
+                                <button type="submit" className="btn w-full" disabled={isLoading} style={{
+                                    opacity: isLoading && 0.6,
+                                }}>{ isLoading && "Please wait..." }{ !isLoading && "Continue"}</button>
                             </div>
                         </form>
                     </div>
@@ -201,7 +238,9 @@ const Register = () => {
                                 />
                             </div>
                             <div className="mt-5">
-                                <button type="submit" className="btn w-full">Submit</button>
+                                <button type="submit" className="btn w-full" disabled={isLoading} style={{
+                                    opacity: isLoading && 0.6,
+                                }}>{ isLoading && "Submitting..." }{ !isLoading && "Submit"}</button>
                             </div>
                         </form>
                     </div>
@@ -222,8 +261,10 @@ const Register = () => {
                             </button>
                         </div>
 
-                        <div className="mt-3 py-4">Didn't recieve a code?
-                        <span className="text-blue-900 ml-1 cursor-pointer hover:underline">resend code</span>
+                        <div className="mt-3 py-4">Didn't recieve an email?
+                            { resendCodeTimer <= 0 && !isLoading && <span className="text-blue-900 ml-1 cursor-pointer hover:underline" onClick={handleResendMail}>resend email</span> }
+                            { isLoading && <span className="text-blue-900 ml-1">resending email...</span> }
+                            { resendCodeTimer > 0 && !isLoading && <span className="text-blue-900 ml-1">{`email resent, resend another mail in ${resendCodeTimer}s`}</span> }
                         </div>
                     </div>
                 )}

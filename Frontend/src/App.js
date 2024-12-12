@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import CreateRecipe from './CreateRecipe';
 import RecipeDetails from './RecipeDetails';
+import VerifyEmail from './VerifyEmail';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './Register';
 
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route exact path="/register">
               <Register />
+            </Route>
+            <Route path="/verify-email/:key">
+              <VerifyEmail />
             </Route>
           </Switch>
         </div>    

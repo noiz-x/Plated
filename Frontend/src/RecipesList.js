@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 import { useHistory, Link } from "react-router-dom";
 
 const RecipesList = () => {
-    const { data:recipes, isLoading, errors} = useFetch("http://127.0.0.1:8000/api/recipes");
+    const { data:recipes, isLoading, errors} = useFetch("http://127.0.0.1:8000/api/recipes/");
     const history = useHistory();
 
     const handleClick = () => {

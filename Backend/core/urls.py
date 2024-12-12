@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+
+def Home(request):
+    return redirect("http://localhost:3001/")
 
 urlpatterns = [
+    path('', Home),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
     path('api/auth/', include("dj_rest_auth.urls")),
