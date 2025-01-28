@@ -35,7 +35,7 @@ const VerifyEmail = () => {
                     handleRedirect();
                 }
                 else{
-                    throw Error("Email could not be verified. Invalid verification link");
+                    throw Error("We could'nt verify your email. Link may be invalid or expired.");
                 }
             })
             .catch(err => {
@@ -80,12 +80,15 @@ const VerifyEmail = () => {
                                 <path d="M12 16.0195V16" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="12" cy="12" r="10" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <div className="text-center">
+                            <div className="text-center pb-3">
                                 {error}
                             </div>
-                            <div className="mt-5">
-                                <Link to="/login"><button className="btn w-full">Log in anyways</button></Link>
-                            </div>
+                            <span className="mx-4 text-blue-800 cursor-pointer hover:underline">Resend Verification Link</span> 
+                            <div style={{padding:"3px"}}></div>
+                            <span className="mx-4 text-blue-800 cursor-pointer hover:underline">Contact support</span>
+                            <div className="p-1"></div>
+                            <hr />
+                            <div className="pt-2 px-4">Already verified? <Link to="/login" className="text-blue-800 cursor-pointer hover:underline">Login</Link></div>
                         </div>
                     )}
 

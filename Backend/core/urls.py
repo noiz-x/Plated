@@ -19,12 +19,13 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 def Home(request):
-    return redirect("http://localhost:3001/")
+    return redirect("http://localhost:3050/")
 
 urlpatterns = [
     path('', Home),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
+    path('api/auth/', include("auth.urls")),
     path('api/auth/', include("dj_rest_auth.urls")),
     path('api/auth/registration/', include("dj_rest_auth.registration.urls")),
 ]

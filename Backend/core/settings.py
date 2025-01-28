@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import environ, os
-
+from datetime import timedelta
 
 env =  environ.Env()
 
@@ -31,9 +31,10 @@ ALLOWED_HOSTS = []
 FRONTEND_DOMAIN = env('FRONTEND_DOMAIN')
 BACKEND_DOMAIN = env('BACKEND_DOMAIN')
 
-# Application definition
+# Application definition.
 
 INSTALLED_APPS = [
+    # core-django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,9 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    # apps
+    'database',
+    'api',
+
+    # third-party apps
     'rest_framework',
     'rest_framework.authtoken',
-    'api',
     'corsheaders',
     'allauth',
     'dj_rest_auth',
@@ -66,7 +71,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3001",
+    "http://localhost:3050",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -96,11 +101,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'plated',
-        'USER': 'postgres',
-        'PASSWORD': 'samuel1234',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
 }
 
@@ -124,12 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_EMAIL_REQUIRED = True
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "database.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -154,9 +159,32 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_AUTH = {
-    'USER_DETAILS_SERIALIZER': 'api.serializers.CustomUserDetailsSerializer',
-    'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
+    'USER_DETAILS_SERIALIZER': 'auth.serializers.AppUserDetailsSerializer',
+    'REGISTER_SERIALIZER': 'auth.serializers.AppRegisterSerializer',
+    'LOGIN_SERIALIZER': 'auth.serializers.AppLoginSerializer',
     'OLD_PASSWORD_FIELD_ENABLED': True,
+    'USE_JWT': True,
+    'JWT_AUTH_HTTPONLY': False,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
 }
 
 SITE_ID = 1

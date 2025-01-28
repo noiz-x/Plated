@@ -5,6 +5,7 @@ import Home from './Home';
 import CreateRecipe from './CreateRecipe';
 import RecipeDetails from './RecipeDetails';
 import VerifyEmail from './VerifyEmail';
+import Login from './Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './Register';
 
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/verify-email/:key">
               <VerifyEmail />
+            </Route>
+            <Route exact path="/login">
+              <Login />
             </Route>
           </Switch>
         </div>    

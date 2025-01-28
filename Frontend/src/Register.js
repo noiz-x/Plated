@@ -134,6 +134,18 @@ const Register = () => {
         })
     }
 
+    const openInbox = () => {
+        if (email.includes("@gmail.com")) {
+            window.open("https://mail.google.com/", "_blank");
+        } else if (email.includes("@outlook.com")) {
+            window.open("https://outlook.live.com/", "_blank");
+        } else if (email.includes("@yahoo.com")) {
+            window.open("https://mail.yahoo.com/", "_blank");
+        } else {
+            alert("Please open your inbox manually.");
+        }
+    }
+
     return ( 
         <div className="register py-10 sm:px-10 px-3">
             <div className="bg-white xl:mx-96 lg:mx-64 md:mx-40 sm:mx-10 rounded-lg shadow-lg p-6 sm:p-10">
@@ -256,7 +268,7 @@ const Register = () => {
                         An email has been sent to <span className="text-blue-900">{email}</span> with a verification link. Check your inbox to verify your email address.
 
                         <div className="mt-4">
-                            <button className="w-full border border-blue-800 border-opacity-30 p-2 rounded-sm hover:bg-blue-50 flex justify-center items-center shadow-md">
+                            <button className="w-full border border-blue-800 border-opacity-30 p-2 rounded-sm hover:bg-blue-50 flex justify-center items-center shadow-md" onClick={openInbox}>
                                 <span>Open Inbox</span>
                             </button>
                         </div>
