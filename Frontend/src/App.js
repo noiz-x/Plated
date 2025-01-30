@@ -1,13 +1,13 @@
 import './App.css';
-import RecipesList from './RecipesList';
-import Navbar from './Navbar';
-import Home from './Home';
-import CreateRecipe from './CreateRecipe';
-import RecipeDetails from './RecipeDetails';
-import VerifyEmail from './VerifyEmail';
-import Login from './Login';
+import RecipesList from './pages/RecipesList';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import CreateRecipe from './pages/CreateRecipe';
+import RecipeDetails from './pages/RecipeDetails';
+import VerifyEmail from './pages/VerifyEmail';
+import Login from './pages/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './Register';
+import Register from './pages/Register';
 
 function App() {
   return (

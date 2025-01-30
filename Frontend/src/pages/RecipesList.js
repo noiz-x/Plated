@@ -1,4 +1,4 @@
-import useFetch from "./useFetch";
+import useFetch from "../hooks/useFetch";
 import { useHistory, Link } from "react-router-dom";
 
 const RecipesList = () => {
