@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <div className='content bg-slate-100'>
+        <div className='content bg-slate-200'>
           <Switch>
             <Route exact path="/">
               <Home />

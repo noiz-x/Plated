@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
+import recipe1 from "./mexican_recipe1.jpeg"
+import bgRecipe from "./mexican_bg.webp"
 
 const Home = () => {
     return ( 
-        <div className="home">
-            <div className="text-4xl font-bold font-serif">Hello y'all</div>
-            <br></br>
-            <Link to="/recipes"><button type="button" className="bg-blue-300 p-2 rounded me-6">View All Recipes</button></Link>
-            <Link to="/recipes/new"><button type="button" className="bg-blue-300 p-2 rounded">Create New Recipe</button></Link>
+        <div className="home text-slate-100 bg-blue-800">
+            <div className="text-6xl font-bold text-center p-4 pt-10">Explore Recipies on PLATED</div>
+            <div className="flex flex-wrap justify-center gap-10 mb-10">Browse up to 7,000 recipies on Plated</div>
+            
+            <div className="relative flex items-center bg-black">
+                <div className="w-auto p-4 absolute z-10 flex items-center">
+                    <img src={recipe1} alt="Mexican Recipe" className="w-80 object-cover ml-8"/>
+                    <div className="text-nowrap text-white px-8">
+                        <div className="text-6xl font-semibold mb-2">Mexican Dishes</div>
+                        <div className="text-xl">Explore our beautiful collection of Mexican recipes</div>
+                    </div>
+                </div>
+                <img src={bgRecipe} alt="background recipe" className="object-cover opacity-40 hover:opacity-60 transition ease-in duration-1000" style={{
+                    height: "380px",
+                    width: "100vw"
+                }} />
+            </div>
+
         </div>
      );
 }
