@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import recipe1 from "../assets/images/mexican_recipe1.jpeg"
 import bgRecipe from "../assets/images/mexican_bg.webp"
 

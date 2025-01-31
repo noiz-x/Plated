@@ -1,9 +1,9 @@
-import { useParams, Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const VerifyEmail = () => {
     const { key } = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [redirectTimer, setRedirectTimer] = useState(10);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ const VerifyEmail = () => {
                 time--;
             }
             else{
-                history.push("/login");
+                navigate("/login");
             }
         }, 1000)
     }

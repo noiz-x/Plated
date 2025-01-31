@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const RecipeDetails = () => {
     const { id } = useParams();
     const { data:recipe, isLoading, errors } = useFetch("http://127.0.0.1:8000/api/recipes/"+id);
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const handleClick = () => {
-        history.go(-1)
+        navigate(-1)
     }
 
     return ( 

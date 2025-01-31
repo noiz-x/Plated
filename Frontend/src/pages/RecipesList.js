@@ -1,12 +1,12 @@
 import useFetch from "../hooks/useFetch";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const RecipesList = () => {
     const { data:recipes, isLoading, errors} = useFetch("http://127.0.0.1:8000/api/recipes/");
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        history.go(-1);
+        navigate(-1);
     }
 
     return ( 

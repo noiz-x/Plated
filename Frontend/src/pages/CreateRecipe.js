@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateRecipe = () => {
     const [name, setName] = useState('');
@@ -9,10 +9,10 @@ const CreateRecipe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState(null);
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        history.go(-1);
+        navigate(-1);
     }
 
     const handleSubmit = (e) => {
@@ -35,7 +35,7 @@ const CreateRecipe = () => {
         })
 
         if (!errors){
-            history.push("/recipes");
+            navigate("/recipes");
             // Add a flash message of some'n later. Using m the status we get
         }
     }
