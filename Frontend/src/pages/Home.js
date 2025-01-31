@@ -1,11 +1,15 @@
 import recipe1 from "../assets/images/mexican_recipe1.jpeg"
 import bgRecipe from "../assets/images/mexican_bg.webp"
 
+import SearchBar from "../components/SearchBar";
+
 const Home = () => {
     return ( 
         <div className="home text-slate-100 bg-blue-800">
             <div className="text-6xl font-bold text-center p-4 pt-10">Explore Recipies on PLATED</div>
             <div className="flex flex-wrap justify-center gap-10 mb-10">Browse up to 7,000 recipies on Plated</div>
+
+            <SearchBar />
             
             <div className="relative flex items-center bg-black">
                 <div className="w-auto p-4 absolute z-10 flex items-center">

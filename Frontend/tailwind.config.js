@@ -6,6 +6,9 @@ module.exports = {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    preflight: false, // For MUI support
+  },
   plugins: [],
 }
 
