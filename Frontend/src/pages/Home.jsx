@@ -1,10 +1,23 @@
 import recipe1 from "../assets/images/mexican_recipe1.jpeg"
 import bgRecipe from "../assets/images/mexican_bg.webp"
+import carbonara from "../assets/images/spaghetti-carbonara.webp"
+import chickenTikka from "../assets/images/chicken-tikka.webp"
+import salad from "../assets/images/avocado-salad.jpg"
+import pancakes from "../assets/images/blueberry-pancakes.jpg"
 
 import SearchBar from "../components/SearchBar";
 import Card from "../components/Card"
 
 const Home = () => {
+    // proto data for now - till the API is done
+    const recipes = [
+        { name: "Spaghetti Carbonara", description: "A classic Italian pasta dish.", image: carbonara },
+        { name: "Chicken Tikka", description: "Delicious grilled chicken in spices.", image: chickenTikka },
+        { name: "Avocado Salad", description: "A fresh and healthy avocado salad.", image: salad },
+        { name: "Blueberry Pancakes", description: "Fluffy pancakes with blueberries.", image: pancakes },
+      ];
+
+
     return ( 
         <div className="home">
             <div className="text-slate-100 bg-blue-800">
@@ -31,7 +44,11 @@ const Home = () => {
             <div className="p-4">
                 <div className="text-4xl font-semibold">Discover Recipes</div>
                 <div className="pb-3 pt-1">Discover several recipes made by our cooks</div>
-                <Card name="Zucchini" description="sfgsfh" image={ bgRecipe } />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    {recipes.map((recipe, index) => (
+                        <Card key={index} {...recipe} />
+                    ))}
+                </div>
             </div>
 
             <div>
