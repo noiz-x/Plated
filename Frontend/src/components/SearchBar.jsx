@@ -12,7 +12,7 @@ const SearchBar = () => {
               </svg>
           </button>
           
-          <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+          <div id="dropdown" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
               <ul class="py-2 text-md text-gray-700" aria-labelledby="dropdown-button">
                   <li><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Breakfast</button></li>
                   <li><button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Lunch</button></li>
