@@ -2,13 +2,14 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
   },
-  corePlugins: {
-    preflight: false, // For MUI support
-  },
-  plugins: [],
+  important: true,
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 
