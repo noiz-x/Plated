@@ -15,6 +15,8 @@ const Home = () => {
         { name: "Chicken Tikka", description: "Delicious grilled chicken in spices.", image: chickenTikka },
         { name: "Avocado Salad", description: "A fresh and healthy avocado salad.", image: salad },
         { name: "Blueberry Pancakes", description: "Fluffy pancakes with blueberries.", image: pancakes },
+        { name: "Avocado Salad", description: "A fresh and healthy avocado salad.", image: salad },
+        { name: "Spaghetti Carbonara", description: "A classic Italian pasta dish.", image: carbonara },
       ];
 
 
@@ -51,8 +53,14 @@ const Home = () => {
                 </div>
             </div>
 
-            <div>
-                <div>Trending Recipes</div>
+            <div className="p-4">
+                <div className="text-4xl px-4 pt-2 font-semibold">Trending Recipes</div>
+                <div className="pb-3 pt-1 px-4">Yoo, you sure wanna try 'em out</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    {recipes.map((recipe, index) => (
+                        <Card key={index} {...recipe} />
+                    ))}
+                </div>
             </div>
         </div>
      );
