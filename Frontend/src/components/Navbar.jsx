@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (  
-        <div className="navbar bg-blue-800 px-6 py-3 border-blue-900 sticky top-0">
+        <div className="navbar bg-blue-800 px-6 py-3 border-blue-900 sticky top-0 z-50">
             <ul className="nav-items flex flex-row justify-between">
                 <div className="flex flex-row items-center space-x-3 text-white text-base font-sans">
                     <div className="font-bold text-xl cursor-pointer mr-1">PLATED</div>
