@@ -7,6 +7,8 @@ import RecipeDetails from "../pages/RecipeDetails";
 import VerifyEmail from "../pages/VerifyEmail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "../components/PrivateRoute";
+import Dashboard from "../pages/Dashboard";
 
 
 const AppRoutes = () => {
@@ -19,6 +21,9 @@ const AppRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/verify-email/:key" element={<VerifyEmail />} />
       <Route path="/login" element={<Login />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
       {/* <Route path="*" element={<NotFound />} />  */}
     </Routes>
   );

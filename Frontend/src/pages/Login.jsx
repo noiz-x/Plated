@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { login } from "../auth/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [emailuname, setEmailuname] = useState("");
@@ -6,17 +8,17 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSubmit = (e) => {
-        setIsLoading(true);
-        e.preventDefault();
+    const navigate = useNavigate();
 
-        fetch("http://127.0.0.1:8000/api/auth/login/", {
-            headers: {"Content-Type": "application/json"},
-            method: "POST",
-            body: JSON.stringify({})
-        })
-        .then()
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await login(email, password);
+            navigate("/dashboard");
+        } catch (error) {
+            setError("Login Failed");
+        }
+    };
 
     const handleForgetPassword = () => {
         if (emailuname === ""){
