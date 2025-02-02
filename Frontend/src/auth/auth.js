@@ -2,8 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://127.0.0.1:8000/api/auth/";
 
-export const login = async (uname_email, password) => {
-    const response = await axios.post(`${API_URL}login/`, { username:uname_email, password });
+export const login = async (emailuname, password) => {
+    const response = await axios.post(`${API_URL}login/`, { username:emailuname, password });
 
     if (response.data.access && response.data.refresh) {
         localStorage.setItem("accessToken", response.data.access);

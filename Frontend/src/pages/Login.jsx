@@ -11,12 +11,16 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        setIsLoading(true);
         e.preventDefault();
         try {
-            await login(email, password);
+            await login(emailuname, password);
+            // logged in =>
+            setIsLoading(false);
             navigate("/dashboard");
         } catch (error) {
-            setError("Login Failed");
+            setError("Login Failed. Invalid Credentials");
+            setIsLoading(false);
         }
     };
 
