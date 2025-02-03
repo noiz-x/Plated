@@ -27,6 +27,8 @@ export const refreshToken = async () => {
         const response = await axios.post(`${API_URL}token/refresh/`, { refresh });
         
         localStorage.setItem("accessToken", response.data.access);
+        localStorage.setItem("refreshToken", response.data.refresh);
+
         return response.data.access;
     } catch (error) {
         console.error("Refresh token expired", error);
