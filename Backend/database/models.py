@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin
 class User(AbstractUser, PermissionsMixin):
     address = models.CharField(max_length=300, null=True)
     bio = models.TextField(null=True)
+    is_first_login = models.BooleanField(null=True, default=None)
 
     def __str__(self) -> str:
         return f"User: {self.username}"

@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
+from dj_rest_auth.views import LoginView
+
 from django.http import HttpResponseNotFound
 from django.shortcuts import redirect
 from django.conf import settings
@@ -15,6 +17,18 @@ from .serializers import UsernameUpdateSerializer
 def verify_email_view(request, *args, **kwargs):
     key = kwargs.get("key", "")
     return redirect(f"{settings.FRONTEND_DOMAIN}verify-email/{key}/")
+
+
+class LoginView(LoginView):
+    def get_response(self, user, serializer):
+        if user.is_first_login == None:
+            user.is_first_login = True
+            user.save()
+        else:
+            user.is_first_login = False
+            user.save()
+
+        return super().get_response(user, serializer)
 
     
 class PasswordResetView(APIView):
