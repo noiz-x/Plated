@@ -6,8 +6,8 @@ from database.models import User
 class AppUserDetailsSerializer(UserDetailsSerializer, ModelSerializer):
     class Meta:
         model = User
-        fields = ["pk", "username", "first_name", "last_name", "email", "date_joined", "last_login", "address", "bio",]  # noqa: E501
-        read_only_fields = ["pk", "email", "date_joined", "last_login", "username",]  # noqa: E501
+        fields = ["pk", "username", "first_name", "last_name", "email", "date_joined", "last_login", "address", "bio", "is_first_login",]  # noqa: E501
+        read_only_fields = ["pk", "email", "date_joined", "last_login", "username", "is_first_login",]  # noqa: E501
 
 class UsernameUpdateSerializer(UserDetailsSerializer, ModelSerializer):
     class Meta:

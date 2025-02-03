@@ -19,16 +19,22 @@ def verify_email_view(request, *args, **kwargs):
     return redirect(f"{settings.FRONTEND_DOMAIN}verify-email/{key}/")
 
 
-class LoginView(LoginView):
-    def get_response(self, user, serializer):
-        if user.is_first_login == None:
-            user.is_first_login = True
-            user.save()
-        else:
-            user.is_first_login = False
+from dj_rest_auth.views import LoginView
+from rest_framework.response import Response
+
+class AppLoginView(LoginView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+
+        if response.status_code == 200:
+            user = request.user
+            if user.is_first_login is None:
+                user.is_first_login = True
+            else:
+                user.is_first_login = False
             user.save()
 
-        return super().get_response(user, serializer)
+        return response
 
     
 class PasswordResetView(APIView):

@@ -12,6 +12,8 @@ const Dashboard = () => {
                 <div className="dashboard">
                     <h1>Welcome, {data.username}!</h1>
                     <p>Your email address is: {data.email}</p>
+                    <p>{ data.is_first_login && "Welcome New User"}</p>
+                    <p>{ !data.is_first_login && "Welcome Back"}</p>
                 </div>
             ) }
         </div>
