@@ -7,19 +7,21 @@ const useFetchProtectedData = (endpoint) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axiosInstance.get(endpoint);
-                setData(response.data);
-            } catch (error) {
-                setError("Failed to fetch data");
-                console.error("Error fetching protected data", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
+        setTimeout(() => {
+            const fetchData = async () => {
+                try {
+                    const response = await axiosInstance.get(endpoint);
+                    setData(response.data);
+                } catch (error) {
+                    setError("Failed to fetch data");
+                    console.error("Error fetching protected data", error);
+                } finally {
+                    setLoading(false);
+                }
+            };
+    
+            fetchData();
+        }, 2000);
     }, [endpoint]);
 
     return { data, loading, error };
