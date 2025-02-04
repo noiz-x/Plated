@@ -46,7 +46,7 @@ const ResetPassword = () => {
 
     return ( 
         <div className="password-reset">
-            
+            I'll finish this password reset page tomorrow.
         </div>
      );
 }
