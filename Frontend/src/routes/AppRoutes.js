@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import Dashboard from "../pages/Dashboard";
+import ResetPassword from "../pages/ResetPassword";
 
 
 const AppRoutes = () => {
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/recipes/:id" element={<RecipeDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-email/:key" element={<VerifyEmail />} />
+      <Route path="/reset-password/:uidb64/:key" element={<ResetPassword />} />
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />

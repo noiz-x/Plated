@@ -25,7 +25,7 @@ const Login = () => {
         fetch(`${apiDomain}api/auth/password/reset/`, {
             headers: {"Content-Type": "application/json"},
             method: "POST",
-            body: JSON.stringify({ emailuname }) 
+            body: JSON.stringify({ email: emailuname }) 
         })
         .then((res) => {
             if (res.ok){

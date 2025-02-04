@@ -18,9 +18,11 @@ def verify_email_view(request, *args, **kwargs):
     key = kwargs.get("key", "")
     return redirect(f"{settings.FRONTEND_DOMAIN}verify-email/{key}/")
 
+def password_reset_view(request, *args, **kwargs):
+    uidb64 = kwargs.get("uidb64", "")
+    key = kwargs.get("key", "")
+    return redirect(f"{settings.FRONTEND_DOMAIN}reset-password/{uidb64}/{key}/")
 
-from dj_rest_auth.views import LoginView
-from rest_framework.response import Response
 
 class AppLoginView(LoginView):
     def post(self, request, *args, **kwargs):
@@ -35,14 +37,6 @@ class AppLoginView(LoginView):
             user.save()
 
         return response
-
-    
-class PasswordResetView(APIView):
-    def get(self, request, *args, **kwargs):
-        uid = kwargs.get('uidb64', None)
-        key = kwargs.get('key', None)
-        data = {'uid': uid, 'token': key}
-        return Response(data, status=status.HTTP_200_OK)
 
 
 class UpdateUsernameView(generics.RetrieveUpdateAPIView):
