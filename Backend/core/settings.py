@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'api',
 
     # third-party apps
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3050",
+    # add production urls later
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -168,8 +170,12 @@ REST_AUTH = {
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT auth
     ],
 }
 
@@ -185,6 +191,12 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
+}
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'LOGIN_URL': None,
+    'LOGOUT_URL': None,
 }
 
 SITE_ID = 1

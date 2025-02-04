@@ -28,4 +28,7 @@ urlpatterns = [
     path('api/auth/', include("auth.urls")),
     path('api/auth/', include("dj_rest_auth.urls")),
     path('api/auth/registration/', include("dj_rest_auth.registration.urls")),
+    
+    # docs
+    path('docs/', include('core.swagger_urls')),
 ]
