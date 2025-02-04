@@ -4,7 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 
 const RecipeDetails = () => {
     const { id } = useParams();
-    const { data:recipe, isLoading, errors } = useFetch("http://127.0.0.1:8000/api/recipes/"+id);
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
+    const { data:recipe, isLoading, errors } = useFetch(`${apiDomain}api/recipes/`+id);
 
     const navigate = useNavigate()
 

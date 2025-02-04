@@ -1,7 +1,8 @@
 import axios from "axios";
 import { refreshToken } from "./auth";
 
-const API_URL = "http://localhost:8000/api/auth/";
+const apiDomain = process.env.REACT_APP_API_DOMAIN;
+const API_URL = `${apiDomain}api/auth/`;
 
 const axiosInstance = axios.create({
     baseURL: API_URL,

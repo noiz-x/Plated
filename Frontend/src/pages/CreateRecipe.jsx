@@ -9,6 +9,8 @@ const CreateRecipe = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState(null);
 
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
+
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -19,7 +21,8 @@ const CreateRecipe = () => {
         e.preventDefault();
 
         const data = { name, description };
-        fetch("http://127.0.0.1:8000/api/recipes", {
+
+        fetch(`${apiDomain}api/recipes/`, {
             headers: {"Content-Type": "application/json"},
             method: "POST",
             body: JSON.stringify(data)

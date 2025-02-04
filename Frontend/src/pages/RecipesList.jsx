@@ -2,7 +2,8 @@ import useFetch from "../hooks/useFetch";
 import { useNavigate, Link } from "react-router-dom";
 
 const RecipesList = () => {
-    const { data:recipes, isLoading, errors} = useFetch("http://127.0.0.1:8000/api/recipes/");
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
+    const { data:recipes, isLoading, errors} = useFetch(`${apiDomain}api/recipes/`);
     const navigate = useNavigate();
 
     const handleClick = () => {

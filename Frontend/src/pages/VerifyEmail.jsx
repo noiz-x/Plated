@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const VerifyEmail = () => {
     const { key } = useParams();
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
     const navigate = useNavigate();
 
     const [redirectTimer, setRedirectTimer] = useState(10);
@@ -24,7 +25,7 @@ const VerifyEmail = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            fetch("http://127.0.0.1:8000/api/auth/registration/verify-email/", {
+            fetch(`${apiDomain}api/auth/registration/verify-email/`, {
                 headers: {"Content-Type": "application/json"},
                 method: "POST",
                 body: JSON.stringify({ key })

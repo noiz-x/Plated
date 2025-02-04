@@ -2,7 +2,9 @@ import useFetchProtectedData from "../hooks/useFetchProtectedData";
 import Loader from "../components/Loader";
 
 const Dashboard = () => {
-    const { data, loading, error } = useFetchProtectedData("http://127.0.0.1:8000/api/auth/user/");
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
+
+    const { data, loading, error } = useFetchProtectedData(`${apiDomain}api/auth/user/`);
 
     return ( 
         <div>

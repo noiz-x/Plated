@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-    
+    const apiDomain = process.env.REACT_APP_API_DOMAIN;
+
     // Form
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
@@ -22,7 +23,7 @@ const Register = () => {
 
         const usernameErrorPattern = /[^a-zA-Z0-9_]/;
 
-        fetch("http://127.0.0.1:8000/api/auth/registration/validate-username/?username="+uname)
+        fetch(`${apiDomain}api/auth/registration/validate-username/?username=`+uname)
         .then(res => {
             if (res.ok){
                 if (usernameErrorPattern.test(uname)){
@@ -45,7 +46,7 @@ const Register = () => {
         setIsLoading(true);
         e.preventDefault();
 
-        fetch("http://127.0.0.1:8000/api/auth/registration/validate-email/?email="+email)
+        fetch(`${apiDomain}api/auth/registration/validate-email/?email=`+email)
         .then(res => {
             if (res.ok){
                 setError(null);
@@ -77,7 +78,7 @@ const Register = () => {
             
             // Submit logic
             
-            fetch("http://127.0.0.1:8000/api/auth/registration/", {
+            fetch(`${apiDomain}api/auth/registration/`, {
                 headers : {'Content-Type': 'application/json'},
                 method: 'POST',
                 body: JSON.stringify({
@@ -110,7 +111,7 @@ const Register = () => {
     const handleResendMail = () => {
         setIsLoading(true);
 
-        fetch("http://127.0.0.1:8000/api/auth/registration/resend-email/", {
+        fetch(`${apiDomain}api/auth/registration/resend-email/`, {
             headers: {"Content-Type": "application/json"},
             method: "POST",
             body: JSON.stringify({ email }) 

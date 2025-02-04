@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/api/auth/";
+const apiDomain = process.env.REACT_APP_API_DOMAIN;
+const API_URL = `${apiDomain}api/auth/`;
 
 export const login = async (emailuname, password) => {
     const response = await axios.post(`${API_URL}login/`, { username:emailuname, password });
