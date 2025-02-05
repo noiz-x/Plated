@@ -117,6 +117,8 @@ const ResetPassword = () => {
 
                             Login with new passowrd now?
                             Redirects to login automatically.
+
+                            Nice works
                         </div>
                     </div>
                 )}
