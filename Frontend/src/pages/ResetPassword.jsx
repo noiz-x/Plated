@@ -115,7 +115,7 @@ const ResetPassword = () => {
                         <div>
                             Successful password reset
 
-                            Login with new passowrd now?
+                            <div>Login with new passowrd now?</div>
                             Redirects to login automatically.
 
                             Nice works
