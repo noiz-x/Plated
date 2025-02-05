@@ -37,14 +37,19 @@ const ResetPassword = () => {
             method: "POST",
             body: JSON.stringify({ new_password1: password1, new_password2: password2, uid: uidb64, token: key })
         })
-        .then(res => {
-            if (res.ok){
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                throw Error("Password Reset Failed. Link may be invalid or expired.");
+            } else if (data.new_password2) {
+                throw Error(data.new_password2[0]);
+            } else if (data.detail && data.detail === "Password has been reset with the new password.") {
+                // success!
                 setIsLoading(false);
                 setError(null);
                 setLevel(2);
-            }
-            else{
-                throw Error("Password Reset Failed. Link may be invalid or expired.");
+            } else{
+                throw Error("Something Went Wrong.");
             }
         })
         .catch(err => {
