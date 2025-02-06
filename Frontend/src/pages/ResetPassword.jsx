@@ -9,7 +9,7 @@ const ResetPassword = () => {
     const [redirectTimer, setRedirectTimer] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [level, setLevel] = useState(2);
+    const [level, setLevel] = useState(1);
 
     // form
     const [password1, setPassword1] = useState("");
