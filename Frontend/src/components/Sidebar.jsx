@@ -28,7 +28,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
  
-export function SidebarWithSearch() {
+export function Sidebar() {
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
  
