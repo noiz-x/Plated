@@ -28,7 +28,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
  
-export function Sidebar() {
+function Sidebar() {
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
  
@@ -182,3 +182,6 @@ export function Sidebar() {
     </Card>
   );
 }
+
+
+export default Sidebar;
