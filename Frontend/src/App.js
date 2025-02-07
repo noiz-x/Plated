@@ -1,7 +1,7 @@
 import "./App.css";
 import 'flowbite';
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar";  
 import AppRoutes from "./routes/AppRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -10,9 +10,10 @@ function App() {
 
   return (
     <Router>
-      <div className="App flex flex-col h-screen">
+      <div className={`App h-screen ${isLoggedIn ? "flex" : "flex flex-col"}`}>
         {isLoggedIn ? <Sidebar /> : <Navbar />}
-        <div className="content bg-slate-200 flex-grow">
+
+        <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
           <AppRoutes />
         </div>
       </div>
