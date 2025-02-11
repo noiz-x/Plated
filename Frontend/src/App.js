@@ -14,11 +14,11 @@ function App() {
   return (
     <Router>
       <div className={`App h-screen ${isLoggedIn ? "flex" : "flex flex-col"}`}>
-        <Card />
+        <Navbar />
 
-        {/* <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
+        <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
           <AppRoutes />
-        </div> */}
+        </div>
       </div>
     </Router>
   );
