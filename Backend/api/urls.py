@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
 
+router = routers.DefaultRouter()
+
+router.register(r'recipes', views.RecipeViewset, basename='recipe')
 
 urlpatterns = [
-    path("recipes/", views.ListCreateRecipe().as_view(), name="list-create-recipe"),
-    path("recipes/<int:pk>/", views.RecipeDetailView().as_view(), name="recipe-detail"),
+    path('', include(router.urls)),
 ]
