@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className={`App h-screen ${isLoggedIn ? "flex" : "flex flex-col"}`}>
-        <Sidebar />
+        <Navbar />
 
         <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
           <AppRoutes />
