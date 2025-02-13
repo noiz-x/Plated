@@ -5,7 +5,6 @@ import Sidebar from "./components/Sidebar";
 // there's still a bug with this Sidebar
 import AppRoutes from "./routes/AppRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Card } from "@material-tailwind/react";
 
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className={`App h-screen ${isLoggedIn ? "flex" : "flex flex-col"}`}>
-        <Navbar />
+        <Sidebar />
 
         <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
           <AppRoutes />
