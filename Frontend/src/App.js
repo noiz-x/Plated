@@ -1,8 +1,7 @@
 import "./App.css";
 import 'flowbite';
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";  
-// there's still a bug with this Sidebar
+import Sidebar from "./components/Sidebar";
 import AppRoutes from "./routes/AppRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
 
