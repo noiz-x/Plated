@@ -1,5 +1,6 @@
 import useFetchProtectedData from "../hooks/useFetchProtectedData";
 import Loader from "../components/Loader";
+import Sidebar from "../components/Sidebar";
 
 const Dashboard = () => {
     const apiDomain = process.env.REACT_APP_API_DOMAIN;
@@ -11,14 +12,11 @@ const Dashboard = () => {
             { loading && <Loader text="Please wait... We're setting up your dashboard." /> }
             { error && <p>{ error }</p> }
             { data && (
-                <div className="dashboard">
-                    <h1>Welcome, {data.username}!</h1>
-                    <p>Your email address is: {data.email}</p>
-                    <p>{ data.is_first_login && "Welcome New User"}</p>
-                    <p>{ !data.is_first_login && "Welcome Back"}</p>
-
-
-                    <div>I'll design dashboard tomorrow</div>
+                <div className="dashboard flex">
+                    <Sidebar />
+                    <div className="w-full bg-slate-100">
+                        <div className="text-2xl font-semibold p-5">Welcome {data.is_first_login ? "to Plated" : "back"}, {data.username}!</div>
+                    </div>
                 </div>
             ) }
         </div>

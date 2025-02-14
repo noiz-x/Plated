@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 
 const VerifyEmail = () => {
     const { key } = useParams();
@@ -47,8 +48,9 @@ const VerifyEmail = () => {
     }, []);
 
     return ( 
-        <div className="email-verification">
-            <div className="register py-10 sm:px-10 px-3">
+        <div className="email-verification min-h-screen flex flex-col">
+            <Navbar />
+            <div className="py-10 sm:px-10 px-3 bg-slate-100 flex-grow">
                 <div className="bg-white xl:mx-96 lg:mx-64 md:mx-40 sm:mx-10 rounded-lg shadow-lg p-6 sm:p-10">
                     
                     { isLoading && (

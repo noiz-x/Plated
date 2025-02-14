@@ -8,15 +8,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const isLoggedIn = !!localStorage.getItem("authToken"); 
+  console.log(isLoggedIn);
 
   return (
     <Router>
-      <div className={`App h-screen ${isLoggedIn ? "flex" : "flex flex-col"}`}>
-        <Navbar />
-
-        <div className={`content bg-slate-200 flex-grow ${isLoggedIn ? "ml-[250px]" : ""}`}>
-          <AppRoutes />
-        </div>
+      <div className="App">        
+        <AppRoutes />
       </div>
     </Router>
   );

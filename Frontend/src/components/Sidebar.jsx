@@ -10,7 +10,6 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Alert,
   Input,
 } from "@material-tailwind/react";
 import {
@@ -24,28 +23,25 @@ import {
 import {
   ChevronRightIcon,
   ChevronDownIcon,
-  CubeTransparentIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
  
 function Sidebar() {
   const [open, setOpen] = React.useState(0);
-  const [openAlert, setOpenAlert] = React.useState(true);
  
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
  
   return (
-    <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <Card className="h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 flex items-center gap-4 p-4">
-        <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
         <Typography variant="h5" color="blue-gray">
-          Sidebar
+          Plated
         </Typography>
       </div>
       <div className="p-2">
-        <Input icon={<MagnifyingGlassIcon className="h-5 w-5" />} label="Search" />
+        <Input />
       </div>
       <List>
         <Accordion
@@ -60,9 +56,9 @@ function Sidebar() {
           <ListItem className="p-0" selected={open === 1}>
             <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                <PresentationChartBarIcon className="h-5 w-5 fill-blue-800" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-normal px-1">
                 Dashboard
               </Typography>
             </AccordionHeader>
@@ -71,19 +67,19 @@ function Sidebar() {
             <List className="p-0">
               <ListItem>
                 <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5 stroke-blue-800" />
                 </ListItemPrefix>
                 Analytics
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5 stroke-blue-800" />
                 </ListItemPrefix>
                 Reporting
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5 stroke-blue-800" />
                 </ListItemPrefix>
                 Projects
               </ListItem>
@@ -102,9 +98,9 @@ function Sidebar() {
           <ListItem className="p-0" selected={open === 2}>
             <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
               <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
+                <ShoppingBagIcon className="h-5 w-5 fill-blue-800" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-normal px-1">
                 E-Commerce
               </Typography>
             </AccordionHeader>
@@ -129,7 +125,7 @@ function Sidebar() {
         <hr className="my-2 border-blue-gray-50" />
         <ListItem>
           <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
+            <InboxIcon className="h-5 w-5 mr-1" />
           </ListItemPrefix>
           Inbox
           <ListItemSuffix>
@@ -138,47 +134,23 @@ function Sidebar() {
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
+            <UserCircleIcon className="h-5 w-5 mr-1" />
           </ListItemPrefix>
           Profile
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
+            <Cog6ToothIcon className="h-5 w-5 mr-1" />
           </ListItemPrefix>
           Settings
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
+            <PowerIcon className="h-5 w-5 mr-1" />
           </ListItemPrefix>
           Log Out
         </ListItem>
       </List>
-      <Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
-        <CubeTransparentIcon className="mb-4 h-12 w-12" />
-        <Typography variant="h6" className="mb-1">
-          Upgrade to PRO
-        </Typography>
-        <Typography variant="small" className="font-normal opacity-80">
-          Upgrade to Material Tailwind PRO and get even more components, plugins, advanced features
-          and premium.
-        </Typography>
-        <div className="mt-4 flex gap-3">
-          <Typography
-            as="a"
-            href="#"
-            variant="small"
-            className="font-medium opacity-80"
-            onClick={() => setOpenAlert(false)}
-          >
-            Dismiss
-          </Typography>
-          <Typography as="a" href="#" variant="small" className="font-medium">
-            Upgrade Now
-          </Typography>
-        </div>
-      </Alert>
     </Card>
   );
 }

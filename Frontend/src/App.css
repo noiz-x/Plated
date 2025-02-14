@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .input{
-    @apply block p-2 mt-1 mb-2 rounded w-full border-blue-800 border border-opacity-20;
+    @apply block p-2 mt-1 mb-2 rounded w-full border-blue-800 border border-opacity-20 placeholder:text-gray-700;
 }
 
 .btn{
