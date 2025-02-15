@@ -81,7 +81,7 @@ function Sidebar() {
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5 stroke-blue-800" />
                 </ListItemPrefix>
-                Projects
+                My Recipes
               </ListItem>
             </List>
           </AccordionBody>
