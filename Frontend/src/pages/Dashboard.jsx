@@ -12,10 +12,10 @@ const Dashboard = () => {
             { loading && <Loader text="Please wait... We're setting up your dashboard." /> }
             { error && <p>{ error }</p> }
             { data && (
-                <div className="dashboard flex bg-slate-100">
+                <div className="dashboard bg-slate-100">
                     <Sidebar />
-                    <div className="w-full min-h-screen">
-                        <div className="text-2xl font-semibold p-5">Welcome {data.is_first_login ? "to Plated" : "back"}, {data.username}!</div>
+                    <div className="min-h-screen lg:ml-[20rem] ml-[4rem]">
+                        <div className="text-2xl font-semibold py-5">Welcome {data.is_first_login ? "to Plated" : "back"}, {data.username}!</div>
                     </div>
                 </div>
             ) }
