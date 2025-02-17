@@ -44,7 +44,7 @@ function Sidebar() {
   };
  
   return (
-    <>
+    <div className="fixed overflow-y-scroll">
       <IconButton variant="text" size="lg" className="lg:hidden mt-3 ml-4" onClick={openDrawer}>
         {isDrawerOpen ? (
           <XMarkIcon className="h-8 w-8 stroke-2" />
@@ -280,7 +280,7 @@ function Sidebar() {
           </List>
         </Card>
       </Drawer>
-    </>
+    </div>
   );
 }
 
