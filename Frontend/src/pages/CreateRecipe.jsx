@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 const CreateRecipe = () => {
     const [name, setName] = useState('');
@@ -44,32 +45,35 @@ const CreateRecipe = () => {
     }
 
     return ( 
-        <div className="create-recipe">
-            <span className="font-bold text-4xl text-blue-950">Create New Recipe</span>
-            <form className="p-4" onSubmit={e => handleSubmit(e)}>
-                <div>
-                    <label htmlFor="name" className="font-semibold text-lg">Input Recipe Name:</label>
-                    <p><input type="text"
-                            className="p-2 w-96 rounded" 
-                            id="name" 
-                            value={name} 
+        <div className="create-recipe bg-slate-100">
+            <Sidebar />
+            <div className="min-h-screen lg:ml-[20rem] ml-[4rem]">
+                <span className="font-bold text-4xl text-blue-950">Create New Recipe</span>
+                <form className="p-4" onSubmit={e => handleSubmit(e)}>
+                    <div>
+                        <label htmlFor="name" className="font-semibold text-lg">Input Recipe Name:</label>
+                        <p><input type="text"
+                                className="p-2 w-96 rounded" 
+                                id="name" 
+                                value={name} 
+                                required
+                                onChange={e => setName(e.target.value)} 
+                        /></p>
+                    </div>
+                    <div>
+                        <label htmlFor="description" className="font-semibold text-lg">Describe Your Recipe:</label>
+                        <p><textarea type="text"
+                            id="description" 
+                            className="p-3 h-28 w-96 rounded"
+                            value={description}
                             required
-                            onChange={e => setName(e.target.value)} 
-                    /></p>
-                </div>
-                <div>
-                    <label htmlFor="description" className="font-semibold text-lg">Describe Your Recipe:</label>
-                    <p><textarea type="text"
-                        id="description" 
-                        className="p-3 h-28 w-96 rounded"
-                        value={description}
-                        required
-                        onChange={e => setDescription(e.target.value)}
-                    ></textarea></p>
-                </div>
-                <button type="submit" className="bg-blue-300 p-2 rounded me-3">Create Recipe</button>
-                <button type="button" className="bg-blue-300 p-2 rounded" onClick={handleClick}>Back</button>
-            </form>
+                            onChange={e => setDescription(e.target.value)}
+                        ></textarea></p>
+                    </div>
+                    <button type="submit" className="bg-blue-300 p-2 rounded me-3">Create Recipe</button>
+                    <button type="button" className="bg-blue-300 p-2 rounded" onClick={handleClick}>Back</button>
+                </form>
+            </div>
         </div>
      );
 }
