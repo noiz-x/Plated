@@ -1,7 +1,9 @@
 import React from "react";
 import {
   Card,
+  Drawer,
   Typography,
+  IconButton,
   List,
   ListItem,
   ListItemPrefix,
@@ -19,6 +21,8 @@ import {
   PowerIcon,
   HomeModernIcon,
   BookmarkIcon,
+  Bars3Icon,
+  XMarkIcon,
   CalendarIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/24/solid";
@@ -41,14 +45,14 @@ function Sidebar() {
  
   return (
     <>
-      <IconButton variant="text" size="lg" onClick={openDrawer}>
+      <IconButton variant="text" size="lg" className="lg:hidden" onClick={openDrawer}>
         {isDrawerOpen ? (
           <XMarkIcon className="h-8 w-8 stroke-2" />
         ) : (
           <Bars3Icon className="h-8 w-8 stroke-2" />
         )}
       </IconButton>
-      <Drawer open={isDrawerOpen} onClose={closeDrawer}>
+      <Drawer open={isDrawerOpen} onClose={closeDrawer} className="lg:relative lg:translate-x-0 lg:transition-none">
         <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 flex items-center gap-4 p-4">
             <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
