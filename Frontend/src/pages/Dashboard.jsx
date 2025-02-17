@@ -1,6 +1,7 @@
 import useFetchProtectedData from "../hooks/useFetchProtectedData";
 import Loader from "../components/Loader";
 import Sidebar from "../components/Sidebar";
+import SpeedDialComp from "../components/SpeedDial";
 
 const Dashboard = () => {
     const apiDomain = process.env.REACT_APP_API_DOMAIN;
@@ -16,6 +17,7 @@ const Dashboard = () => {
                     <Sidebar />
                     <div className="min-h-screen lg:ml-[20rem] ml-[4rem]">
                         <div className="text-2xl font-semibold py-5">Welcome {data.is_first_login ? "to Plated" : "back"}, {data.username}!</div>
+                        <SpeedDialComp />
                     </div>
                 </div>
             ) }
