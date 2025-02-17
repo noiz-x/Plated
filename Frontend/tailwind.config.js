@@ -7,7 +7,13 @@ module.exports = withMT({
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        slate: {
+          100: "#f1f5f9",
+        },
+      },
+    },
   },
   important: true,
   plugins: [
