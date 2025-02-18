@@ -271,7 +271,7 @@ function Sidebar() {
               </ListItemPrefix>
               Settings
             </ListItem>
-            <ListItem classN>
+            <ListItem className="text-red-500 hover:text-red-600">
               <ListItemPrefix>
                 <PowerIcon className="h-5 w-5" />
               </ListItemPrefix>
