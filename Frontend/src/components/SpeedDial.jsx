@@ -15,7 +15,7 @@ import {
 import { CalendarDaysIcon, DocumentPlusIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 // still a lil problem on z-index of speed dial
-// also way to darken backgroud when speed dial is hovered
+// also way to darken background when speed dial is hovered
    
 function SpeedDialComp() {
     const labelProps = {
