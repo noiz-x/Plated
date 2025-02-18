@@ -31,10 +31,14 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
+import { logout } from "../auth/auth";
+import { useNavigate } from "react-router-dom";
  
 function Sidebar() {
   const [open, setOpen] = React.useState(0);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const openDrawer = () => setIsDrawerOpen(true);
   const closeDrawer = () => setIsDrawerOpen(false);
@@ -42,6 +46,12 @@ function Sidebar() {
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+    // should be a flash message here!
+  }
  
   return (
     <div className="fixed overflow-y-scroll z-50">
@@ -271,7 +281,7 @@ function Sidebar() {
               </ListItemPrefix>
               Settings
             </ListItem>
-            <ListItem className="text-red-500 hover:text-red-600">
+            <ListItem className="text-red-500 hover:text-red-600" onClick={handleLogout}>
               <ListItemPrefix>
                 <PowerIcon className="h-5 w-5" />
               </ListItemPrefix>
