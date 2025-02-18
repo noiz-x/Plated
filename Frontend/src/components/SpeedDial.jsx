@@ -23,7 +23,7 @@ function SpeedDialComp() {
     };
    
     return (
-        <div className="absolute bottom-5 right-5">
+        <div className="fixed bottom-5 right-5 z-40">
           <SpeedDial>
             <SpeedDialHandler>
               <IconButton size="lg" className="rounded-full bg-blue-800">
