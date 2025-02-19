@@ -7,9 +7,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem("authToken"); 
-  console.log(isLoggedIn);
-
   return (
     <Router>
       <div className="App">        
