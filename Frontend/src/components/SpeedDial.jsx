@@ -26,7 +26,7 @@ function SpeedDialComp() {
     const navigate = useNavigate();
    
     return (
-        <div className="fixed bottom-5 right-5 z-40">
+        <div className="fixed bottom-5 right-5">
           <SpeedDial>
             <SpeedDialHandler>
               <IconButton size="lg" className="rounded-full bg-blue-800">
