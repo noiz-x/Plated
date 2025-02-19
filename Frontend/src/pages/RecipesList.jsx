@@ -15,7 +15,7 @@ const RecipesList = () => {
         <div className="recipe-list bg-slate-100 min-h-screen">
             <div className="bg-slate-100 sticky top-0 lg:top-auto">
                 <Sidebar />
-                <div className="text-2xl ml-[4rem] font-bold py-4 top-0 lg:hidden">PLATED</div>
+                <div className="text-2xl ml-[4rem] font-semibold py-4 top-0 lg:hidden">Plated</div>
             </div>
             <div className="lg:ml-[20rem] h-full lg:px-0 px-4">
                 {isLoading && <div>Loading...</div>}
