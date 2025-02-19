@@ -48,7 +48,7 @@ const CreateRecipe = () => {
         <div className="create-recipe bg-slate-100 min-h-screen">
             <div className="bg-slate-100 sticky top-0 lg:top-auto">
                 <Sidebar />
-                <div className="text-2xl ml-[4rem] font-bold py-4 top-0 lg:hidden">PLATED</div>
+                <div className="text-2xl ml-[4rem] font-semibold py-4 top-0 lg:hidden">Plated</div>
             </div>
             <div className="lg:ml-[20rem] h-full lg:px-0 px-4">
                 <span className="font-bold text-4xl text-blue-950">Create New Recipe</span>
