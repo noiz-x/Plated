@@ -16,15 +16,15 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/recipes" element={<RecipesList />} />
-      <Route path="/recipes/new" element={<CreateRecipe />} />
-      <Route path="/recipes/:id" element={<RecipeDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-email/:key" element={<VerifyEmail />} />
       <Route path="/reset-password/:uidb64/:key" element={<ResetPassword />} />
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/recipes" element={<RecipesList />} />
+        <Route path="/recipes/new" element={<CreateRecipe />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Route>
       {/* <Route path="*" element={<NotFound />} />  */}
     </Routes>
