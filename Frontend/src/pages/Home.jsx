@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar"
 
 const Home = () => {
     // proto data for now - till the API is done
+    // work on responsiveness of these pages
     const recipes = [
         { name: "Spaghetti Carbonara", description: "A classic Italian pasta dish.", image: carbonara },
         { name: "Chicken Tikka", description: "Delicious grilled chicken in spices.", image: chickenTikka },
