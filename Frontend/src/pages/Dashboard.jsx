@@ -14,7 +14,7 @@ const Dashboard = () => {
             { error && <p>{ error }</p> }
             { data && (
                 <div className="dashboard bg-slate-100 min-h-screen">
-                    <div className="bg-slate-100 sticky top-0 lg:top-auto">
+                    <div className="bg-slate-100 top-0 lg:top-auto">
                         <Sidebar />
                         <div className="text-2xl ml-[4rem] font-semibold py-4 top-0 lg:hidden">Plated</div>
                     </div>
