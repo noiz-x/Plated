@@ -16,7 +16,7 @@ const Dashboard = () => {
                 <div className="dashboard bg-slate-100 min-h-screen">
                     <Sidebar />
                     <div className="bg-slate-100 sticky top-0 lg:hidden">
-                        <div className="text-2xl ml-[4rem] font-semibold py-3   ">Plated</div>
+                        <div className="text-2xl ml-[4rem] font-semibold py-3">Plated</div>
                     </div>
                     <div className="lg:ml-[20rem] h-full lg:px-0 px-4">
                         <div className="text-2xl font-semibold lg:pt-5 lg:pb-2 pb-1">Welcome {data.is_first_login ? "to Plated" : "back"}, {data.username}!</div>
