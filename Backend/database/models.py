@@ -13,6 +13,9 @@ class User(AbstractUser, PermissionsMixin):
         db_table = "user"
 
 
+def upload_to(instance, filename):
+    return f'uploads/{filename}'
+
 class Recipe(models.Model):
     DIFFICULTY_CHOICES = [
         ('Easy', 'Easy'),
@@ -29,7 +32,7 @@ class Recipe(models.Model):
 
     name = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='recipes/', blank=True, null=True)
+    image = models.ImageField(upload_to=upload_to, blank=True, null=True)
     ingredients = models.TextField()  # I'll prolly seperate the ingredients with paragraphs
     instructions = models.TextField()
     prep_time = models.PositiveIntegerField(help_text="Time in minutes")
