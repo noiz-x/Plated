@@ -206,3 +206,6 @@ APP_NAME = "Plated"
 DEFAULT_FROM_EMAIL = "support.platedfoods@plated.org"
 
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[Plated]'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
