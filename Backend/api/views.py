@@ -7,7 +7,7 @@ from rest_framework import viewsets
 
 class RecipeViewset(viewsets.ModelViewSet):
     queryset = Recipe.objects.select_related('author').all()
-    # permission_classes = [IsAuthenticated, ]
+    permission_classes = [IsAuthenticated, ]
     serializer_class = RecipieSerializer
 
     def perform_create(self, serializer):
