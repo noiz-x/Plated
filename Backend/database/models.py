@@ -5,16 +5,13 @@ class User(AbstractUser, PermissionsMixin):
     address = models.CharField(max_length=300, null=True)
     bio = models.TextField(null=True)
     is_first_login = models.BooleanField(null=True, default=None)
+    profile_image = models.ImageField(upload_to='uploads/profile_images/', blank=True, null=True, default="defaults/profile-default-image.png")
 
     def __str__(self) -> str:
         return f"User: {self.username}"
 
     class Meta:
         db_table = "user"
-
-
-def upload_to(instance, filename):
-    return f'uploads/{filename}'
 
 class Recipe(models.Model):
     DIFFICULTY_CHOICES = [
@@ -32,12 +29,13 @@ class Recipe(models.Model):
 
     name = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to=upload_to, blank=True, null=True, default="defaults/recipe-default-image.png")
+    image = models.ImageField(upload_to='uploads/recipe_images/', blank=True, null=True, default="defaults/recipe-default-image.png")
     ingredients = models.TextField()  # I'll prolly seperate the ingredients with paragraphs
     instructions = models.TextField()
     prep_time = models.PositiveIntegerField(help_text="Time in minutes")
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="Medium")
     created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0")
     categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
