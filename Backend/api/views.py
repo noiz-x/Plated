@@ -6,6 +6,6 @@ from rest_framework import viewsets
 
 
 class RecipeViewset(viewsets.ModelViewSet):
-    queryset = Recipe
-    permission_classes = [IsAuthenticated, ]
+    queryset = Recipe.objects.all()
+    # permission_classes = [IsAuthenticated, ]
     serializer_class = RecipieSerializer
