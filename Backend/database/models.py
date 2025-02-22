@@ -41,6 +41,7 @@ class Recipe(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0")
     categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
 
     def __str__(self):
         return self.name
