@@ -5,7 +5,7 @@ class User(AbstractUser, PermissionsMixin):
     address = models.CharField(max_length=300, null=True)
     bio = models.TextField(null=True)
     is_first_login = models.BooleanField(null=True, default=None)
-    profile_image = models.ImageField(upload_to='uploads/profile_images/', blank=True, null=True, default="defaults/profile-default-image.png")
+    profile_image = models.ImageField(upload_to='uploads/profile_images/', blank=True, null=True, default="defaults/profile-default-image.jpeg")
 
     def __str__(self) -> str:
         return f"User: {self.username}"
