@@ -40,6 +40,7 @@ class Recipe(models.Model):
     categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
+    # other fields like likes comments will be added later
 
     def __str__(self):
         return self.name
