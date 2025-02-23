@@ -1,5 +1,5 @@
 from database.models import Recipe
-from .serializers import RecipieSerializer
+from .serializers import RecipieSerializer, UserSerializer
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, generics
@@ -15,7 +15,7 @@ class RecipeViewset(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class UserListRetrieveView(generics.ListAPIView, generics.RetrieveAPIView):
+class UserListRetrieveView(generics.RetrieveUpdateAPIView):
     # View for a user's interraction with other users
     queryset = User.objects.all()
-    serializer_class = ""
+    serializer_class = UserSerializer
