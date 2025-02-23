@@ -2,7 +2,7 @@ from database.models import Recipe
 from .serializers import RecipieSerializer, PublicUserSerializer
 
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
 from django.contrib.auth import get_user_model
 
 
