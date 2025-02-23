@@ -9,7 +9,7 @@ class RecipieSerializer(ModelSerializer):
         fields = '__all__'
         extra_kwargs = {'author': {'write_only': True}}
 
-class UserSerializer(ModelSerializer):
+class PublicUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__' # streamlined later

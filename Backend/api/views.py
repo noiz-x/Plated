@@ -1,5 +1,5 @@
 from database.models import Recipe
-from .serializers import RecipieSerializer, UserSerializer
+from .serializers import RecipieSerializer, PublicUserSerializer
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, generics
@@ -15,7 +15,9 @@ class RecipeViewset(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class UserListRetrieveView(generics.RetrieveUpdateAPIView):
-    # View for a user's interraction with other users
+class PublicUserViewSet(viewsets.GenericViewSet):
+    """Public user viewset with limited public actions: profile view and follow."""
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = PublicUserSerializer
+
+    # define actions
