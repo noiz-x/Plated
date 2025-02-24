@@ -15,24 +15,30 @@ class RecipeViewset(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
 
     def get_queryset(self):
+        if self.action in ['public_list', 'public_details']:  # All recipes for public actions
+            return Recipe.objects.select_related('author').all()
         return Recipe.objects.filter(author=self.request.user).select_related('author').all()
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-    @action(detail=False, methods=['get',], permission_classes=[AllowAny,])
+    @action(detail=False, methods=['get',], permission_classes=[AllowAny,], url_path='public-list')
     def public_list(self, request):
-        """Public Recipe Endpoint - with read-only access to all recipes. 
-        Accessible to all users (even unauthenticated users)"""
-        recipes = Recipe.objects.select_related('author').all()
+        """
+        Public Recipe Endpoint - with read-only access to all recipes. 
+        Accessible to all users (even unauthenticated users)
+        """
+        recipes = self.get_queryset()
         serializer = PublicRecipeSerializer(recipes, many=True)
         return Response(serializer.data)
     
-    @action(detail=True, methods=['get',], permission_classes=[AllowAny,])
+    @action(detail=True, methods=['get',], permission_classes=[AllowAny,], url_path='public-details')
     def public_details(self, request, pk):
-        """Public Recipe Endpoint - with read-only access to specific recipe.
-        Accessible to all users (even unauthenticated users)"""
-        recipe = get_object_or_404(Recipe, pk=pk)
+        """
+        Public Recipe Endpoint - with read-only access to specific recipe.
+        Accessible to all users (even unauthenticated users)
+        """
+        recipe = self.get_object()
         serializer = PublicRecipeSerializer(recipe)
         return Response(serializer.data)
 
