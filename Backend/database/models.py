@@ -37,6 +37,8 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0")
+    # ratings, comments and likes would be implemented soon. NOTE: Ratings is a read only field, it can't be modified by anyone
+    # It's value only gets updated from the ratings, comments many to many relationship with this Table. The relationship field can be modified 
     categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')

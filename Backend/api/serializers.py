@@ -2,12 +2,14 @@ from database.models import Recipe, User
 from rest_framework.serializers import ModelSerializer, CharField
 
 class RecipieSerializer(ModelSerializer):
-    author_username = CharField(source='author.username', read_only=True)
-    # author profile image add later
+    # for Public
+    # author_username = CharField(source='author.username', read_only=True)
+    # # author profile image add later
     class Meta:
         model = Recipe
-        fields = '__all__'
-        extra_kwargs = {'author': {'write_only': True}}
+        exclude = ('author',)
+        read_only_fields = ['pk', 'created_at', 'last_modified', 'rating',]
+        # extra_kwargs = {'author': {'write_only': True}}
 
 class PublicUserSerializer(ModelSerializer):
     class Meta:
