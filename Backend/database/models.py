@@ -30,7 +30,10 @@ class Recipe(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='uploads/recipe_images/', blank=True, null=True, default="defaults/recipe-default-image.png")
-    ingredients = models.TextField()  # I'll prolly seperate the ingredients with paragraphs
+    ingredients = models.TextField() 
+    # Explanation: -- Formatted text
+    # - Each line is formatted as: Ingredient: Quantity | Description or additional info
+    # - Optional items are clearly marked
     instructions = models.TextField()
     prep_time = models.PositiveIntegerField(help_text="Time in minutes")
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="Medium")
