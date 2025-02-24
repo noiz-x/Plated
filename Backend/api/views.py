@@ -21,7 +21,7 @@ class RecipeViewset(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
     @action(detail=False, methods=['get',], permission_classes=[AllowAny,])
-    def public(self, request):
+    def public_list(self, request):
         """Public Recipe Endpoint - with read-only access to all recipes. 
         Accessible to all users (even unauthenticated users)"""
         recipes = Recipe.objects.select_related('author').all()
@@ -29,7 +29,7 @@ class RecipeViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
     
     @action(detail=True, methods=['get',], permission_classes=[AllowAny,])
-    def public(self, request, pk):
+    def public_details(self, request, pk):
         """Public Recipe Endpoint - with read-only access to specific recipe.
         Accessible to all users (even unauthenticated users)"""
         recipe = get_object_or_404(Recipe, pk=pk)
