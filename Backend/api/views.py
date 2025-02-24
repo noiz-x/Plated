@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
-
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 class RecipeViewset(viewsets.ModelViewSet):
@@ -26,7 +26,15 @@ class RecipeViewset(viewsets.ModelViewSet):
         Accessible to all users (even unauthenticated users)"""
         recipes = Recipe.objects.select_related('author').all()
         serializer = PublicRecipeSerializer(recipes, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data)
+    
+    @action(detail=True, methods=['get',], permission_classes=[AllowAny,])
+    def public(self, request, pk):
+        """Public Recipe Endpoint - with read-only access to specific recipe.
+        Accessible to all users (even unauthenticated users)"""
+        recipe = get_object_or_404(Recipe, pk=pk)
+        serializer = PublicRecipeSerializer(recipe)
+        return Response(serializer.data)
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
