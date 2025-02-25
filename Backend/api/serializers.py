@@ -16,9 +16,9 @@ class PublicRecipeSerializer(ModelSerializer):
         model = Recipe
         exclude = ('author',)
         
-    def __init__(self, instance=None, data=..., **kwargs):
-        super().__init__(instance, data, **kwargs)
-        """Mark all fields as read only"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        """Mark all fields as read-only"""
         for field_name in self.fields:
             self.fields[field_name].read_only = True
 
