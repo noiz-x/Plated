@@ -5,7 +5,7 @@ class RecipeSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ('author',)
-        read_only_fields = ['pk', 'created_at', 'last_modified', 'rating',]
+        read_only_fields = ['pk', 'created_at', 'last_modified', 'rating', 'likes',]
         # extra_kwargs = {'author': {'write_only': True}}
 
 class PublicRecipeSerializer(ModelSerializer):
@@ -15,11 +15,15 @@ class PublicRecipeSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ('author',)
+        
+    def __init__(self, instance=None, data=..., **kwargs):
+        super().__init__(instance, data, **kwargs)
+        """Mark all fields as read only"""
+        for field_name in self.fields:
+            self.fields[field_name].read_only = True
 
 class PublicUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__' # streamlined later
         read_only_fields = fields  #  I'll remove things like followers profile likes etc later
-
-# I'll create something similar to this UserSerializer for Recipes also in views => # Endpoint for a user's interraction with other users' recipes
