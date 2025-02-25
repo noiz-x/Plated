@@ -5,7 +5,7 @@ class RecipeSerializer(ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ('author',)
-        read_only_fields = ['pk', 'created_at', 'last_modified', 'rating', 'likes',]
+        read_only_fields = ['pk', 'created_at', 'last_modified', 'likes', 'liked_by', 'rating', 'reviewed_by',]
         # extra_kwargs = {'author': {'write_only': True}}
 
 class PublicRecipeSerializer(ModelSerializer):
