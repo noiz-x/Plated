@@ -41,6 +41,8 @@ class RecipeViewset(viewsets.ModelViewSet):
         recipe = self.get_object()
         serializer = PublicRecipeSerializer(recipe)
         return Response(serializer.data)
+    
+    # Likes next
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
