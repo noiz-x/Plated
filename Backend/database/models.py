@@ -41,13 +41,13 @@ class Recipe(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     liked_by = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
     likes = models.PositiveIntegerField(default=0)
+    reviewed_by = models.ManyToManyField(User, through='RecipeRatingsAndReviews', related_name='recipe_reviews')
     rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, help_text="Rating from 0.0 to 5.0")
-    # ratings, comments and likes would be implemented soon. NOTE: Ratings is a read only field, it can't be modified by anyone
-    # It's value only gets updated from the ratings, comments many to many relationship with this Table. The relationship field can be modified 
+    # NOTE: rating and likes are read only fields, they can't be modified by anyone
+    # Their values only get updated from the ratings, likes, comments many to many relationship with this Table (signals). The relationship field can be modified 
     categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
-    # other fields like likes comments will be added later
 
     def __str__(self):
         return self.name
@@ -55,6 +55,22 @@ class Recipe(models.Model):
     class Meta:
         db_table = "recipe"
 
+class RecipeRatingsAndReviews(models.Model):
+    """
+    Intermediate / Through model connecting Recipe and User model for ratings and reviews
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, help_text="Rating from 0.0 to 5.0")
+    comment = models.TextField(blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'recipe')
+        db_table = "recipe_ratings_and_reviews"
+
+    def __str__(self):
+        return f'{self.user.username} on -> {self.recipe.name}'
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
