@@ -3,13 +3,13 @@ from django.dispatch import receiver
 from django.db.models import Avg
 from database.models import Recipe, RecipeRatingsAndReviews
 
-@receiver(m2m_changed, sender=Recipe.liked_by.through)
-def update_likes(sender, instance, action, **kwargs):
+@receiver(m2m_changed, sender=Recipe.saved_by.through)
+def update_saves(sender, instance, action, **kwargs):
     """
-    Automatically update the number of likes (likes field) whenever the liked_by field changes.
+    Automatically update the number of saves (saves field) whenever the saved_by field changes.
     """
     if action in ['post_add', 'post_remove', 'post_clear']:
-        instance.likes = instance.liked_by.count()
+        instance.saves = instance.saved_by.count()
         instance.save()
 
 @receiver([post_save, post_delete], sender=RecipeRatingsAndReviews)

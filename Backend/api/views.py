@@ -45,7 +45,8 @@ class RecipeViewset(viewsets.ModelViewSet):
     def save(self, request, *args, **kwargs):
         """
         Endpoint to like or un-like recipes.
-        Accessible to only authenticated users
+        Accessible to only authenticated users.
+        Saves are private.
         """
         recipe = self.get_object()
         serializer = PublicRecipeSerializer(recipe)

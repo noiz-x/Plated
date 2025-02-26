@@ -39,8 +39,8 @@ class Recipe(models.Model):
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="Medium")
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    liked_by = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
-    likes = models.PositiveIntegerField(default=0)
+    saved_by = models.ManyToManyField(User, related_name='saved_recipes', blank=True)
+    saves = models.PositiveIntegerField(default=0)
     reviewed_by = models.ManyToManyField(User, through='RecipeRatingsAndReviews', related_name='recipe_reviews')
     rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, help_text="Rating from 0.0 to 5.0")
     # NOTE: rating and likes are read only fields, they can't be modified by anyone
