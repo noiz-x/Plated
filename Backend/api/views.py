@@ -44,12 +44,18 @@ class RecipeViewset(viewsets.ModelViewSet):
     @action(detail=True, methods=['patch',], permission_classes=[IsAuthenticated,])
     def save(self, request, *args, **kwargs):
         """
-        Endpoint to like or un-like recipes.
+        Endpoint to save or un-save recipes.
         Accessible to only authenticated users.
         Saves are private.
         """
         recipe = self.get_object()
-        serializer = PublicRecipeSerializer(recipe)
+        user = request.user
+        if user in recipe.saved_by.all():
+            recipe.saved_by.remove(user)
+            return Response({'detail': 'Recipe unsaved'}, status=status.HTTP_200_OK)
+        else:
+            recipe.saved_by.add(user)
+            return Response({'detail': 'Recipe saved'}, status=status.HTTP_201_CREATED)
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
