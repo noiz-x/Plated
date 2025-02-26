@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 class RecipeViewset(viewsets.ModelViewSet):
@@ -15,7 +14,7 @@ class RecipeViewset(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
 
     def get_queryset(self):
-        if self.action in ['public_list', 'public_details']:  # All recipes for public actions
+        if self.action in ['public_list', 'public_details', 'save']:  # All recipes for public actions
             return Recipe.objects.select_related('author').all()
         return Recipe.objects.filter(author=self.request.user).select_related('author').all()
 
@@ -42,7 +41,14 @@ class RecipeViewset(viewsets.ModelViewSet):
         serializer = PublicRecipeSerializer(recipe)
         return Response(serializer.data)
     
-    # Likes next
+    @action(detail=True, methods=['patch',], permission_classes=[IsAuthenticated,])
+    def save(self, request, *args, **kwargs):
+        """
+        Endpoint to like or un-like recipes.
+        Accessible to only authenticated users
+        """
+        recipe = self.get_object()
+        serializer = PublicRecipeSerializer(recipe)
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
