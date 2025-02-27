@@ -42,7 +42,7 @@ class Recipe(models.Model):
     saved_by = models.ManyToManyField(User, related_name='saved_recipes', blank=True)
     saves = models.PositiveIntegerField(default=0)
     reviewed_by = models.ManyToManyField(User, through='RecipeRatingsAndReviews', related_name='recipe_reviews')
-    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, help_text="Rating from 0.0 to 5.0")
+    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0")
     # NOTE: rating and likes are read only fields, they can't be modified by anyone
     # Their values only get updated from the ratings, likes, comments many to many relationship with this Table (signals). The relationship field can be modified 
     categories = models.ManyToManyField('Category', blank=True)
@@ -61,7 +61,7 @@ class RecipeRatingsAndReviews(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, help_text="Rating from 0.0 to 5.0")
+    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0") # Work to be done on default value
     comment = models.TextField(blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
