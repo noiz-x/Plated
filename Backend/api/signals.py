@@ -18,6 +18,7 @@ def update_rating(sender, instance, **kwargs):
     Automatically update the rating (overall rating) of a recipe whenever a rating is added, updated, or deleted.
     """
     recipe = instance.recipe
-    average_rating = RecipeRatingsAndReviews.objects.filter(recipe=instance).aggregate(avg_rating=Avg('rating'))['avg_rating'] or 0
+    ratings = RecipeRatingsAndReviews.objects.filter(recipe=recipe).exclude(rating=0.0)
+    average_rating = ratings.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 0
     recipe.rating = average_rating
     recipe.save()
