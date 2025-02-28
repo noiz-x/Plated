@@ -45,7 +45,6 @@ class Recipe(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0, help_text="Rating from 0.0 to 5.0")
     # NOTE: rating and likes are read only fields, they can't be modified by anyone
     # Their values only get updated from the ratings, likes, comments many to many relationship with this Table (signals). The relationship field can be modified 
-    categories = models.ManyToManyField('Category', blank=True)
     tags = models.CharField(max_length=255, blank=True, help_text="Comma-separated tags for the recipe (e.g. gluten-free, vegan)")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
 
@@ -71,12 +70,3 @@ class RecipeRatingsAndReviews(models.Model):
 
     def __str__(self):
         return f'{self.user.username} on -> {self.recipe.name}'
-
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        db_table = "recipe_category"
