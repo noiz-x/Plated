@@ -1,4 +1,4 @@
-from database.models import Recipe, User
+from database.models import Recipe, User, RecipeRatingsAndReviews
 from rest_framework.serializers import ModelSerializer, CharField, IntegerField
 
 class RecipeSerializer(ModelSerializer):
@@ -21,6 +21,17 @@ class PublicRecipeSerializer(ModelSerializer):
         """Mark all fields as read-only"""
         for field_name in self.fields:
             self.fields[field_name].read_only = True
+
+class RatingsAndReviewsSerializer(ModelSerializer):
+    user_id = IntegerField(source='user.id', read_only=True)
+    user_name = CharField(source='user.first_name', read_only=True)
+    user_username = CharField(source='user.username', read_only=True)
+    user_image = CharField(source='user.profile_image', read_only=True)
+
+    class Meta:
+        model = RecipeRatingsAndReviews
+        exclude = ('user', 'recipe',)
+        read_only_fields = ('date_added',)
 
 class PublicUserSerializer(ModelSerializer):
     class Meta:

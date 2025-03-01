@@ -1,4 +1,4 @@
-from database.models import Recipe
+from database.models import Recipe, RecipeRatingsAndReviews
 from .serializers import RecipeSerializer, PublicUserSerializer,PublicRecipeSerializer
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -66,6 +66,16 @@ class RecipeViewset(viewsets.ModelViewSet):
         recipes = self.get_queryset().filter(saved_by=request.user)
         serializer = PublicRecipeSerializer(recipes, many=True)
         return Response(serializer.data)
+
+    @action(detail=True, methods=['post',], permission_classes=[IsAuthenticated,], url_path='rate-and-review')
+    def rate_and_review(self, request, pk):
+        """
+        View to add ratings and/or comment, reviews on recipes.
+        Accessible to only authenticated users.
+        Reviews are public and visibe to all users.
+        """
+        recipe = self.get_object()
+        user = request.user
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
