@@ -1,5 +1,5 @@
 from database.models import Recipe, RecipeRatingsAndReviews
-from .serializers import RecipeSerializer, PublicUserSerializer,PublicRecipeSerializer
+from .serializers import RecipeSerializer, PublicUserSerializer,PublicRecipeSerializer, RatingsAndReviewsSerializer
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets
@@ -76,6 +76,12 @@ class RecipeViewset(viewsets.ModelViewSet):
         """
         recipe = self.get_object()
         user = request.user
+        serializer = RatingsAndReviewsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(recipe=recipe, user=user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PublicUserViewSet(viewsets.GenericViewSet):
     """Public user viewset with limited public actions: profile view and follow."""
