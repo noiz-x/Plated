@@ -120,14 +120,14 @@ class RatingsAndReviewsViewset(viewsets.ModelViewSet):
         """
         Update Only the Logged-In User's Review.
         """
-        recipe_id = self.request.data.get('recipe_id')
-        if not recipe_id:
-            raise serializers.ValidationError({"error": "Recipe ID is required"})
+        instance = serializer.instance
 
-        try:
-            recipe = Recipe.objects.get(id=recipe_id)
-        except Recipe.DoesNotExist:
-            raise serializers.ValidationError({"error": "Recipe not found"})
+        if instance.user != self.request.user:
+            raise serializers.ValidationError(
+                {"error": "You can only edit your own reviews"}
+            )
+
+        recipe = instance.recipe
 
         serializer.save(user=self.request.user, recipe=recipe)
 
