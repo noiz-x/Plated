@@ -88,15 +88,18 @@ We welcome contributions to improve Plated. If you have suggestions, bug reports
 
 3. Create a New Branch:
 
-   `git checkout -b feature/YourFeature`
+   ```bash
+   git checkout -b feature/YourFeature
 
 5. Commit your changes: 
 
-   `git commit -am 'Add new feature'`
+   ```bash
+   git commit -am 'Add new feature'
 
 6. Push to the branch:
-
-`git push origin feature/YourFeature`
+  
+   ```bash
+   git push origin feature/YourFeature
 
 7. Create a new Pull Request.
 
