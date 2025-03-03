@@ -146,7 +146,9 @@ class RatingsAndReviewsViewset(viewsets.ModelViewSet):
 
 
 class PublicUserViewSet(viewsets.GenericViewSet):
-    """Public user viewset with limited public actions: profile view and follow."""
+    """Public user viewset with limited public actions: profile view and follow.
+    Design next
+    """
     queryset = User.objects.all()
     serializer_class = PublicUserSerializer
 
