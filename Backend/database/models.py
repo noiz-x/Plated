@@ -6,6 +6,9 @@ class User(AbstractUser, PermissionsMixin):
     bio = models.TextField(null=True)
     is_first_login = models.BooleanField(null=True, default=None)
     profile_image = models.ImageField(upload_to='uploads/profile_images/', blank=True, null=True, default="defaults/profile-default-image.jpeg")
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following', blank=True)
+    followers_count = models.PositiveIntegerField(default=0)
+    following_count = models.PositiveIntegerField(default=0)
 
     def __str__(self) -> str:
         return f"User: {self.username}"
