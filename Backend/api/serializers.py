@@ -36,5 +36,10 @@ class RatingsAndReviewsSerializer(ModelSerializer):
 class PublicUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__' # streamlined later
-        read_only_fields = fields  #  I'll remove things like followers profile likes etc later
+        exclude = ()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        """Mark all fields as read-only"""
+        for field_name in self.fields:
+            self.fields[field_name].read_only = True
