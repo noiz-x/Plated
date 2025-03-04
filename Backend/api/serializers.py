@@ -36,7 +36,7 @@ class RatingsAndReviewsSerializer(ModelSerializer):
 class PublicUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        exclude = ()
+        exclude = ('password', 'last_login', 'is_superuser', 'is_staff', 'is_active', 'is_first_login', 'groups', 'user_permissions', 'followers',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

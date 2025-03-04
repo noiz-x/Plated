@@ -145,12 +145,12 @@ class RatingsAndReviewsViewset(viewsets.ModelViewSet):
         return Response({"message": "Review deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class PublicUserViewSet(viewsets.GenericViewSet):
+class PublicUserViewSet(viewsets.ModelViewSet):
     """
-    Public user viewset with limited public actions: profile view and follow.
-    Design next
+    Public user viewset for public profile view and follow.
+    Assessible to all users but only authenticated users can follow/unfollow
     """
     queryset = User.objects.all()
     serializer_class = PublicUserSerializer
 
-    # define actions
+    http_method_names = ['get',]
