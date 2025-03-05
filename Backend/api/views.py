@@ -1,4 +1,4 @@
-from database.models import Recipe, RecipeRatingsAndReviews
+from database.models import Recipe, RecipeRatingsAndReviews, User
 from .serializers import RecipeSerializer, PublicUserSerializer,PublicRecipeSerializer, RatingsAndReviewsSerializer
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -9,7 +9,6 @@ from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 
-User = get_user_model()
 class RecipeViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
     serializer_class = RecipeSerializer
