@@ -6,7 +6,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status, serializers
 from rest_framework.decorators import action
-from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 
 class RecipeViewset(viewsets.ModelViewSet):
@@ -153,3 +152,17 @@ class PublicUserViewSet(viewsets.ModelViewSet):
     serializer_class = PublicUserSerializer
 
     http_method_names = ['get',]
+
+    @action(methods=['patch',], detail=True, permission_classes=[IsAuthenticated,])
+    def follow(self, request):
+        """
+        View to follow and unfollow a user.
+        """
+        user = self.get_object()
+        auth_user = request.user
+        if auth_user in user.followers.all():
+            user.followers.remove(auth_user)
+            return Response({'detail': f'{user.username} unfollowed'}, status=status.HTTP_200_OK)
+        else:
+            user.followers.add(auth_user)
+            return Response({'detail': f'{user.username} followed'}, status=status.HTTP_201_CREATED)
