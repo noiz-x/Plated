@@ -64,12 +64,12 @@ Plated is a full-stack recipe application that provides a platform for users to 
     ```bash
     npm start
 4.  Open Your Browser:
-    Navigate to `http://localhost:3000` to view the application.
+    Navigate to `http://localhost:3050` to view the application.
 
 ## Usage
 
 - Backend: Access the API at `http://localhost:8000/api/`.
-- Frontend: Access the application at `http://localhost:3000`.
+- Frontend: Access the application at `http://localhost:3050`.
 
 ## Contributing
 
