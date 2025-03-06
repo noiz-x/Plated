@@ -64,12 +64,12 @@ Plated is a full-stack recipe application that provides a platform for users to 
     ```bash
     npm start
 4.  Open Your Browser:
-    Navigate to `http://localhost:3000` to view the application.
+    Navigate to `http://localhost:3050` to view the application.
 
 ## Usage
 
 - Backend: Access the API at `http://localhost:8000/api/`.
-- Frontend: Access the application at `http://localhost:3000`.
+- Frontend: Access the application at `http://localhost:3050`.
 
 ## Contributing
 
@@ -88,15 +88,18 @@ We welcome contributions to improve Plated. If you have suggestions, bug reports
 
 3. Create a New Branch:
 
-   `git checkout -b feature/YourFeature`
+   ```bash
+   git checkout -b feature/YourFeature
 
 5. Commit your changes: 
 
-   `git commit -am 'Add new feature'`
+   ```bash
+   git commit -am 'Add new feature'
 
 6. Push to the branch:
-
-`git push origin feature/YourFeature`
+  
+   ```bash
+   git push origin feature/YourFeature
 
 7. Create a new Pull Request.
 
