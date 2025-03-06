@@ -25,5 +25,18 @@ def update_rating(sender, instance, **kwargs):
 
 @receiver(m2m_changed, sender=User.followers.through)
 def update_followers(sender, instance, action, **kwargs):
-    pass
-    # i'll be back to fix this up soon
+    """
+    Automatically update the number of followers (followers_count field) whenever the followers m2m field changes.
+    """
+    if action in ['post_add', 'post_remove', 'post_clear']:
+        instance.followers_count = instance.followers.count()
+        instance.save()
+
+@receiver(m2m_changed, sender=User.following.through)
+def update_following(sender, instance, action, **kwargs):
+    """
+    Automatically update the number of following (following_count field) whenever the followers m2m field changes.
+    """
+    if action in ['post_add', 'post_remove', 'post_clear']:
+        instance.following_count = instance.following.count()
+        instance.save()
